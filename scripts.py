@@ -64,7 +64,13 @@ def create_commendation(schoolkid, subject_title):
         group_letter=schoolkid.group_letter,
     )
 
-    lesson = kid_lessons.filter(subject__title=subject_title).order_by('?').first()
+    try:
+        lesson = kid_lessons.filter(subject__title=subject_title).order_by('?').get()
+    except MultipleObjectsReturned:
+        exit(f'Error! More than one {subject_title}!')
+
+    except ObjectDoesNotExist:
+        exit(f'Error! {subject_title} not found!')
 
     Commendation.objects.create(
         schoolkid=schoolkid,
