@@ -2,7 +2,7 @@ import random
 
 from datacenter.models import Chastisement, Commendation, Lesson, Mark, Schoolkid
 
-COMMENDS = (
+COMMENDATIONS = (
     'Молодец!',
     'Отлично!',
     'Хорошо!',
@@ -73,7 +73,7 @@ def create_commendation(schoolkid, subject_title):
 
     Commendation.objects.create(
         schoolkid=schoolkid,
-        text=random.choice(COMMENDS),
+        text=random.choice(COMMENDATIONS),
         created=lesson.date,
         teacher=lesson.teacher,
         subject=lesson.subject,
